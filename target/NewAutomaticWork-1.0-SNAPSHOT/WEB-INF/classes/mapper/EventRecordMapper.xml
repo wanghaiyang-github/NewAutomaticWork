@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.lims.manager.model.po.EventRecord" >
+  <resultMap id="BaseResultMap" type="com.bazl.lims.manager.model.po.EventRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ID" property="programId" jdbcType="VARCHAR" />
+    <result column="EVENT_NUM" property="eventNum" jdbcType="INTEGER" />
+    <result column="OPERATION_TYPE" property="operationType" jdbcType="VARCHAR" />
+    <result column="NEED_NUM" property="needNum" jdbcType="INTEGER" />
+    <result column="DO_NUM" property="doNum" jdbcType="INTEGER" />
+    <result column="EVENT_MSG" property="eventMsg" jdbcType="VARCHAR" />
+    <result column="EVENT_STR" property="eventStr" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="operationDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="VOBaseResultMap" type="com.bazl.lims.manager.model.vo.EventRecordVo" >
+    <id column="ID" property="entity.id" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ID" property="entity.programId" jdbcType="VARCHAR" />
+    <result column="EVENT_NUM" property="entity.eventNum" jdbcType="INTEGER" />
+    <result column="OPERATION_TYPE" property="entity.operationType" jdbcType="VARCHAR" />
+    <result column="NEED_NUM" property="entity.needNum" jdbcType="INTEGER" />
+    <result column="DO_NUM" property="entity.doNum" jdbcType="INTEGER" />
+    <result column="EVENT_MSG" property="entity.eventMsg" jdbcType="VARCHAR" />
+    <result column="EVENT_STR" property="entity.eventStr" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="entity.deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="entity.deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="entity.createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="entity.createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="entity.operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="entity.operationDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from event_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bazl.lims.manager.model.po.EventRecord">
+    insert into event_record (ID, PROGRAM_ID, EVENT_NUM,
+      OPERATION_TYPE, NEED_NUM, DO_NUM, 
+      EVENT_MSG, EVENT_STR, CREATE_PERSON, 
+      CREATE_DATETIME, OPERATION_PERSON, OPERATION_DATETIME
+      )
+    values (#{id,jdbcType=VARCHAR},#{programId,jdbcType=VARCHAR}, #{eventNum,jdbcType=INTEGER},
+      #{operationType,jdbcType=VARCHAR}, #{needNum,jdbcType=INTEGER}, #{doNum,jdbcType=INTEGER}, 
+      #{eventMsg,jdbcType=VARCHAR}, #{eventStr,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{operationPerson,jdbcType=VARCHAR}, #{operationDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.lims.manager.model.po.EventRecord" >
+    update event_record
+    set PROGRAM_ID = #{programId,jdbcType=VARCHAR},
+      EVENT_NUM = #{eventNum,jdbcType=INTEGER},
+      OPERATION_TYPE = #{operationType,jdbcType=VARCHAR},
+      NEED_NUM = #{needNum,jdbcType=INTEGER},
+      DO_NUM = #{doNum,jdbcType=INTEGER},
+      EVENT_MSG = #{eventMsg,jdbcType=VARCHAR},
+      EVENT_STR = #{eventStr,jdbcType=VARCHAR},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      OPERATION_PERSON = #{operationPerson,jdbcType=VARCHAR},
+      OPERATION_DATETIME = #{operationDatetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from event_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from event_record
+  </select>
+</mapper>

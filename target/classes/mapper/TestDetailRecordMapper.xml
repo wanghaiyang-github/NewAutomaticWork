@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.lims.manager.model.po.TestDetailRecord" >
+  <resultMap id="BaseResultMap" type="com.bazl.lims.manager.model.po.TestDetailRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TEST_ID" property="testId" jdbcType="VARCHAR" />
+    <result column="EVENT_ID" property="eventId" jdbcType="VARCHAR" />
+    <result column="MESSAGE" property="message" jdbcType="VARCHAR" />
+    <result column="RESULT_STATUS" property="resultStatus" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="operationDatetime" jdbcType="TIMESTAMP" />
+    <result column="FINISH_DATETIME" property="finishDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="VOBaseResultMap" type="com.bazl.lims.manager.model.vo.TestDetailRecordVo" >
+    <id column="ID" property="entity.id" jdbcType="VARCHAR" />
+    <result column="TEST_ID" property="entity.testId" jdbcType="VARCHAR" />
+    <result column="EVENT_ID" property="entity.eventId" jdbcType="VARCHAR" />
+    <result column="MESSAGE" property="entity.message" jdbcType="VARCHAR" />
+    <result column="RESULT_STATUS" property="entity.resultStatus" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="entity.deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="entity.deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="entity.createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="entity.createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="entity.operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="entity.operationDatetime" jdbcType="TIMESTAMP" />
+    <result column="FINISH_DATETIME" property="entity.finishDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from test_detail_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bazl.lims.manager.model.po.TestDetailRecord">
+    insert into test_detail_record (ID, TEST_ID, EVENT_ID,
+      MESSAGE, RESULT_STATUS, CREATE_PERSON, 
+      CREATE_DATETIME, OPERATION_PERSON, OPERATION_DATETIME, 
+      FINISH_DATETIME)
+    values (#{id,jdbcType=VARCHAR}, #{testId,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR},
+      #{message,jdbcType=VARCHAR}, #{resultStatus,jdbcType=VARCHAR}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{operationPerson,jdbcType=VARCHAR}, #{operationDatetime,jdbcType=TIMESTAMP}, 
+      #{finishDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.lims.manager.model.po.TestDetailRecord" >
+    update test_detail_record
+    set TEST_ID = #{testId,jdbcType=VARCHAR},
+      EVENT_ID = #{eventId,jdbcType=VARCHAR},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      RESULT_STATUS = #{resultStatus,jdbcType=VARCHAR},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      OPERATION_PERSON = #{operationPerson,jdbcType=VARCHAR},
+      OPERATION_DATETIME = #{operationDatetime,jdbcType=TIMESTAMP},
+      FINISH_DATETIME = #{finishDatetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from test_detail_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from test_detail_record
+  </select>
+</mapper>

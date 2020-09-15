@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<!--下载路径 -->
+	<entry key="DownloadPath">d:\\download\\</entry>
+
+	<!--压缩包名-->
+	<entry key="ZipName">myfile</entry>
+
+	<!--鉴定书路径-->
+	<entry key="identifyBookPath">e:\identifyBookFile\</entry>
+
+	<!--生成鉴定书文件夹-->
+	<entry key="rebuildPath">rebuildFile</entry>
+
+	<!--上传鉴定书文件夹-->
+	<entry key="uploadPath">uploadFile</entry>
+
+	<!--上传样本照片文件夹-->
+	<entry key="uploadPhotoPath">d:\uploadPhotoPath\</entry>
+
+	<!--标题名称-->
+	<entry key="loginTitleName">全自动工作站检材处理平台</entry>
+	<!--登录页英文标题名称-->
+	<entry key="loginEnglishTitleName">Full outomatic material Inspection and processing platform</entry>
+
+</properties>

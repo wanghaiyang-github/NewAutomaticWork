@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.lims.manager.model.po.TestRecord" >
+  <resultMap id="BaseResultMap" type="com.bazl.lims.manager.model.po.TestRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TEST_NO" property="testNo" jdbcType="VARCHAR" />
+    <result column="SY_PLATE_ID" property="syPlateId" jdbcType="INTEGER" />
+    <result column="BOARD_NO_NAME" property="boardNoName" jdbcType="VARCHAR" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ID" property="programId" jdbcType="INTEGER" />
+    <result column="EXTRACT_PLATE_ID" property="extractPlateId" jdbcType="INTEGER" />
+    <result column="SERVER_ID" property="serverId" jdbcType="INTEGER" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="IS_CREATE" property="isCreate" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="operationDatetime" jdbcType="TIMESTAMP" />
+    <result column="START_DATETIME" property="startDatetime" jdbcType="TIMESTAMP" />
+    <result column="END_DATETIME" property="endDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="VOBaseResultMap" type="com.bazl.lims.manager.model.vo.TestRecordVo" >
+    <id column="ID" property="entity.id" jdbcType="VARCHAR" />
+    <result column="TEST_NO" property="entity.testNo" jdbcType="VARCHAR" />
+    <result column="SY_PLATE_ID" property="entity.syPlateId" jdbcType="INTEGER" />
+    <result column="BOARD_NO_NAME" property="entity.boardNoName" jdbcType="VARCHAR" />
+    <result column="DEVICE_TYPE" property="entity.deviceType" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ID" property="entity.programId" jdbcType="INTEGER" />
+    <result column="EXTRACT_PLATE_ID" property="entity.extractPlateId" jdbcType="INTEGER" />
+    <result column="SERVER_ID" property="entity.serverId" jdbcType="INTEGER" />
+    <result column="STATE" property="entity.state" jdbcType="VARCHAR" />
+    <result column="IS_CREATE" property="entity.isCreate" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="entity.deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="entity.deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="entity.createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="entity.createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="entity.operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="entity.operationDatetime" jdbcType="TIMESTAMP" />
+    <result column="START_DATETIME" property="entity.startDatetime" jdbcType="TIMESTAMP" />
+    <result column="END_DATETIME" property="entity.endDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from test_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bazl.lims.manager.model.po.TestRecord" >
+    insert into test_record (ID, SY_PLATE_ID, TEST_NO,DEVICE_TYPE,
+      PROGRAM_ID, EXTRACT_PLATE_ID, SERVER_ID,
+      CREATE_PERSON, CREATE_DATETIME,
+      OPERATION_PERSON, OPERATION_DATETIME, START_DATETIME, 
+      END_DATETIME)
+    values (#{id,jdbcType=VARCHAR}, #{syPlateId,jdbcType=VARCHAR}, #{testNo,jdbcType=VARCHAR},#{deviceType,jdbcType=VARCHAR},
+      #{programId,jdbcType=INTEGER}, #{extractPlateId,jdbcType=INTEGER}, #{serverId,jdbcType=INTEGER},
+      #{createPerson,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP},
+      #{operationPerson,jdbcType=VARCHAR}, #{operationDatetime,jdbcType=TIMESTAMP}, #{startDatetime,jdbcType=TIMESTAMP}, 
+      #{endDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.lims.manager.model.po.TestRecord" >
+    update test_record
+    set SY_PLATE_ID = #{syPlateId,jdbcType=VARCHAR},
+      TEST_NO = #{testNo,jdbcType=VARCHAR},
+      DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR},
+      PROGRAM_ID = #{programId,jdbcType=INTEGER},
+      EXTRACT_PLATE_ID = #{extractPlateId,jdbcType=INTEGER},
+      SERVER_ID = #{serverId,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=VARCHAR},
+      IS_CREATE = #{isCreate,jdbcType=VARCHAR},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      OPERATION_PERSON = #{operationPerson,jdbcType=VARCHAR},
+      OPERATION_DATETIME = #{operationDatetime,jdbcType=TIMESTAMP},
+      START_DATETIME = #{startDatetime,jdbcType=TIMESTAMP},
+      END_DATETIME = #{endDatetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from test_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from test_record
+  </select>
+
+  <sql id="VO_Query_Where_Clause">
+    <if test="entity.state != null and entity.state != ''">
+      and tr.STATE=#{entity.state, jdbcType=VARCHAR}
+    </if>
+    <if test="entity.id != null and entity.id != ''">
+      and tr.id=#{entity.id, jdbcType=VARCHAR}
+    </if>
+    <if test="entity.createPerson != null and entity.createPerson != ''">
+      and tr.CREATE_PERSON=#{entity.createPerson, jdbcType=VARCHAR}
+    </if>
+  </sql>
+
+  <select id="selectVoListBySyPlateVo" resultType="com.bazl.lims.manager.model.vo.TestRecordVo" resultMap="VOBaseResultMap">
+    SELECT tr.*,
+    ep.BOARD_NO as extractPlateName
+    from test_record tr
+    left join extract_plate ep on ep.id = tr.EXTRACT_PLATE_ID
+    where 1=1 and tr.DELETE_FLAG='0'
+    <if test="_parameter != null">
+      <include refid="VO_Query_Where_Clause"/>
+    </if>
+  </select>
+
+  <select id="selectPaginationList" resultType="com.bazl.lims.manager.model.vo.TestRecordVo" resultMap="VOBaseResultMap">
+    SELECT tr.*,
+    sp.BOARD_NO as boardNoName,
+    pr.PROGRAM_NAME as programName,
+    st.EXTRACT_PLATE_NAME as extractPlateName,
+    si.SERVER_NAME as serverName
+    from test_record tr
+    left join sy_plate sp on sp.id = tr.SY_PLATE_ID
+    left join program_record pr on pr.id = tr.PROGRAM_ID
+    left join sample_table st on tr.EXTRACT_PLATE_ID = st.EXTRACT_PLATE_ID
+    left join server_info si on si.id = tr.SERVER_ID
+    where 1=1 and tr.DELETE_FLAG='0'
+    <if test="_parameter != null">
+      <include refid="VO_Query_Where_Clause"/>
+      order by tr.CREATE_DATETIME desc
+      limit #{offset}, #{rows}
+    </if>
+  </select>
+  <select id="selectCount" parameterType="com.bazl.lims.manager.model.vo.TestRecordVo" resultType="int">
+    SELECT count(*)
+    from test_record tr
+    where 1=1 and tr.DELETE_FLAG='0'
+    <if test="_parameter != null">
+      <include refid="VO_Query_Where_Clause"/>
+      order by tr.CREATE_DATETIME desc
+    </if>
+  </select>
+
+  <delete id="deleteFlagById" parameterType="java.lang.String">
+    update test_record
+    set DELETE_FLAG='1', DELETE_DATETIME = now()
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+</mapper>

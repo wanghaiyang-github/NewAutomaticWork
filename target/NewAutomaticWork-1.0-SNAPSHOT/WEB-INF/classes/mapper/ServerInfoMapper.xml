@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.lims.manager.model.po.ServerInfo" >
+  <resultMap id="BaseResultMap" type="com.bazl.lims.manager.model.po.ServerInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SERVER_NAME" property="serverName" jdbcType="VARCHAR" />
+    <result column="PORT" property="port" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="TIME" property="time" jdbcType="VARCHAR" />
+    <result column="READ_BUFFER_SIZE" property="readBufferSize" jdbcType="VARCHAR" />
+    <result column="CLIENT_IP" property="clientIp" jdbcType="VARCHAR" />
+    <result column="CLIENT_PORT" property="clientPort" jdbcType="VARCHAR" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="OPERATION_PERSON" property="operationPerson" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATETIME" property="operationDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from server_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bazl.lims.manager.model.po.ServerInfo" >
+    insert into server_info (ID, SERVER_NAME, PORT, 
+      STATE, TIME, READ_BUFFER_SIZE, 
+      CLIENT_IP, CLIENT_PORT, DEVICE_TYPE, 
+      DELETE_FLAG, DELETE_DATETIME, CREATE_PERSON, 
+      CREATE_DATETIME, OPERATION_PERSON, OPERATION_DATETIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{serverName,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
+      #{state,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{readBufferSize,jdbcType=VARCHAR}, 
+      #{clientIp,jdbcType=VARCHAR}, #{clientPort,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR}, 
+      #{deleteFlag,jdbcType=VARCHAR}, #{deleteDatetime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{operationPerson,jdbcType=VARCHAR}, #{operationDatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.lims.manager.model.po.ServerInfo" >
+    update server_info
+    set SERVER_NAME = #{serverName,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      TIME = #{time,jdbcType=VARCHAR},
+      READ_BUFFER_SIZE = #{readBufferSize,jdbcType=VARCHAR},
+      CLIENT_IP = #{clientIp,jdbcType=VARCHAR},
+      CLIENT_PORT = #{clientPort,jdbcType=VARCHAR},
+      DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      DELETE_DATETIME = #{deleteDatetime,jdbcType=TIMESTAMP},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      OPERATION_PERSON = #{operationPerson,jdbcType=VARCHAR},
+      OPERATION_DATETIME = #{operationDatetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select *
+    from server_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select *
+    from server_info
+  </select>
+</mapper>
